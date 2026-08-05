@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "./components/layout/Header";
-import Sidebar from "./components/layout/Sidebar";
+import type { Metadata } from 'next';
+import './globals.css';
+
+import Header from '@/components/layout/Header';
+import Sidebar from '@/components/layout/Sidebar';
 
 export const metadata: Metadata = {
-  title: "Workspace Dashboard",
-  description: "Manage workspace bookings, members, and performance.",
+  title: 'Workspace Dashboard',
+  description: 'Manage workspace bookings, members, and performance.',
 };
 
 export default function RootLayout({

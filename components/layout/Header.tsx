@@ -1,4 +1,4 @@
-import { Bell, Plus, Search } from "lucide-react";
+import { Bell, Plus, Search } from 'lucide-react';
 
 export default function Header() {
   return (

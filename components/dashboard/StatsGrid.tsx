@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 const stats = [
   {
-    title: 'Total Revenue',
+    title: "Today's Bookings",
     value: '$124,563',
     change: '+12.5%',
     trend: 'up',
@@ -18,7 +18,7 @@ const stats = [
     textColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
-    title: 'Active Users',
+    title: 'Active Members',
     value: '8,549',
     change: '+8.2%',
     trend: 'up',
@@ -28,7 +28,7 @@ const stats = [
     textColor: 'text-blue-600 dark:text-blue-400',
   },
   {
-    title: 'Total Orders',
+    title: 'Available Spaces',
     value: '2,847',
     change: '+15.3%',
     trend: 'up',
@@ -38,7 +38,7 @@ const stats = [
     textColor: 'text-cyan-600 dark:text-cyan-400',
   },
   {
-    title: 'Page Views',
+    title: 'Utilization Rate',
     value: '45,892',
     change: '-2.1%',
     trend: 'down',

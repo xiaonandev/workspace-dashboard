@@ -1,5 +1,5 @@
-import StatsGrid from "./StatsGrid";
-import ChartSection from "./ChartSection";
+import StatsGrid from './StatsGrid';
+import ChartSection from './ChartSection';
 
 const Dashboard = () => {
   return (

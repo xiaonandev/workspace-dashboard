@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   Bar,
   BarChart,
@@ -7,7 +7,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
 type MonthData = {
   month: string;
   revenue: number;
@@ -15,18 +15,18 @@ type MonthData = {
 };
 const RevenueChart = () => {
   const data: MonthData[] = [
-    { month: "Jan", revenue: 45000, expenses: 32000 },
-    { month: "Feb", revenue: 52000, expenses: 38000 },
-    { month: "Mar", revenue: 48000, expenses: 35000 },
-    { month: "Apr", revenue: 61000, expenses: 42000 },
-    { month: "May", revenue: 55000, expenses: 40000 },
-    { month: "Jun", revenue: 67000, expenses: 45000 },
-    { month: "Jul", revenue: 72000, expenses: 48000 },
-    { month: "Aug", revenue: 69000, expenses: 46000 },
-    { month: "Sep", revenue: 78000, expenses: 52000 },
-    { month: "Oct", revenue: 74000, expenses: 50000 },
-    { month: "Nov", revenue: 82000, expenses: 55000 },
-    { month: "Dec", revenue: 89000, expenses: 58000 },
+    { month: 'Jan', revenue: 45000, expenses: 32000 },
+    { month: 'Feb', revenue: 52000, expenses: 38000 },
+    { month: 'Mar', revenue: 48000, expenses: 35000 },
+    { month: 'Apr', revenue: 61000, expenses: 42000 },
+    { month: 'May', revenue: 55000, expenses: 40000 },
+    { month: 'Jun', revenue: 67000, expenses: 45000 },
+    { month: 'Jul', revenue: 72000, expenses: 48000 },
+    { month: 'Aug', revenue: 69000, expenses: 46000 },
+    { month: 'Sep', revenue: 78000, expenses: 52000 },
+    { month: 'Oct', revenue: 74000, expenses: 50000 },
+    { month: 'Nov', revenue: 82000, expenses: 55000 },
+    { month: 'Dec', revenue: 89000, expenses: 58000 },
   ];
   return (
     <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-b-2xl border border-slate-200/50 dark:border-slate-700/50 p-6">
@@ -81,10 +81,10 @@ const RevenueChart = () => {
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: "rgba(255, 255, 255, 0.95)",
-                border: "none",
-                borderRadius: "12px",
-                boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                border: 'none',
+                borderRadius: '12px',
+                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
               }}
               formatter={(value) => `$${(value as number).toLocaleString()}`}
             />

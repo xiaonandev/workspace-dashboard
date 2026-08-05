@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { PieChart, Pie, ResponsiveContainer, Tooltip, Sector } from "recharts";
+import { PieChart, Pie, ResponsiveContainer, Tooltip, Sector } from 'recharts';
 
 const SalesChart = () => {
   const data = [
-    { name: "Electronics", value: 45, color: "#3b82f6" },
-    { name: "Clothing", value: 30, color: "#06b6d4" },
-    { name: "Books", value: 15, color: "#10b981" },
-    { name: "Other", value: 10, color: "#f59e0b" },
+    { name: 'Meeting Rooms', value: 45, color: '#3b82f6' },
+    { name: 'Desks', value: 30, color: '#06b6d4' },
+    { name: 'Focus Rooms', value: 15, color: '#10b981' },
+    { name: 'Event Spaces', value: 10, color: '#f59e0b' },
   ];
   return (
     <div className="bg-white dark:bg-slate-900 backdrop-blur-xl rounded-b-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
       <div className="mb-6">
         <h3 className="text-lg font-bold text-slate-800 dark:text-white">
-          Sales by Category
+          Bookings by Space Type
         </h3>
         <p className="text-sm text-slate-500 dark:text-slate-400">
           Production Distribution
@@ -37,10 +37,10 @@ const SalesChart = () => {
 
             <Tooltip
               contentStyle={{
-                backgroundColor: "rgba(255, 255, 255, 0.95)",
-                border: "none",
-                borderRadius: "12px",
-                boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                border: 'none',
+                borderRadius: '12px',
+                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
               }}
             />
           </PieChart>
