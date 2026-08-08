@@ -1,24 +1,16 @@
-'use client';
-import {
-  CalendarDays,
-  LayoutDashboard,
-  MapPin,
-  Settings,
-  Users,
-  Zap,
-} from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
+"use client";
+import { CalendarDays, LayoutDashboard, MapPin, Zap } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Overview', href: '/' },
-  { icon: MapPin, label: 'Workspaces', href: '/workspaces' },
-  { icon: CalendarDays, label: 'Bookings', href: '/bookings' },
-  { icon: Users, label: 'Members', href: 'members' },
+  { icon: LayoutDashboard, label: "Overview", href: "/" },
+  { icon: MapPin, label: "Workspaces", href: "/workspaces" },
+  { icon: CalendarDays, label: "Bookings", href: "/bookings" },
 ];
 
 export default function Sidebar() {
-  const [active, setActive] = useState('Overview');
+  const pathname = usePathname();
   return (
     <aside className="sticky top-0 z-20 flex h-screen flex-col bg-[#0a262c] px-4 pt-6 pb-4.5 text-[#d9e7e9] max-[900px]:px-2.5 max-sm:fixed max-sm:top-auto max-sm:bottom-0 max-sm:h-17 max-sm:w-full max-sm:flex-row max-sm:px-3 max-sm:py-2">
       <div className="flex items-center gap-3 px-2.5 pb-7 max-[900px]:justify-center max-[900px]:px-0 max-sm:hidden">
@@ -40,18 +32,17 @@ export default function Sidebar() {
         aria-label="Primary navigation"
       >
         {menuItems.map((item) => {
-          const isActive = active === item.label;
+          const isActive = pathname === item.href;
 
           return (
             <Link
-              onClick={() => setActive(item.label)}
               href={item.href}
               className={`flex items-center gap-3 rounded-sm px-3 py-2.75 text-sm font-semibold no-underline transition-colors max-[900px]:justify-center max-[900px]:px-0 max-sm:flex-1 max-sm:flex-col max-sm:gap-0.75 max-sm:px-1 max-sm:py-1.75 max-sm:text-[10px] ${
                 isActive
-                  ? 'bg-[#44777d] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]'
-                  : 'text-[#aec3c6] hover:bg-white/[0.07] hover:text-white'
+                  ? "bg-[#44777d] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
+                  : "text-[#aec3c6] hover:bg-white/[0.07] hover:text-white"
               }`}
-              aria-current={isActive ? 'page' : undefined}
+              aria-current={isActive ? "page" : undefined}
               key={item.label}
             >
               <item.icon
@@ -67,13 +58,6 @@ export default function Sidebar() {
       </nav>
 
       <div className="mt-auto max-sm:hidden">
-        <a
-          href="#"
-          className="flex items-center gap-3 rounded-[10px] px-3 py-2.75 text-sm font-semibold text-[#aec3c6] no-underline transition-colors hover:bg-white/[0.07] hover:text-white max-[900px]:justify-center max-[900px]:px-0"
-        >
-          <Settings className="size-4.75" aria-hidden="true" />
-          <span className="max-[900px]:hidden">Settings</span>
-        </a>
         <div className="mt-4 flex items-center gap-2.5 border-t border-white/10 px-2.5 pt-4 max-[900px]:justify-center max-[900px]:px-0">
           <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#d7eeee] text-xs font-extrabold text-[#0b5962]">
             AM

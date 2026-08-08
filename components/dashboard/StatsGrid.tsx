@@ -4,48 +4,38 @@ import {
   DollarSign,
   Eye,
   ShoppingCart,
-  Users,
-} from 'lucide-react';
+} from "lucide-react";
 const stats = [
   {
     title: "Today's Bookings",
-    value: '$124,563',
-    change: '+12.5%',
-    trend: 'up',
+    value: "$124,563",
+    change: "+12.5%",
+    trend: "up",
     icon: DollarSign,
-    color: 'from-emerald-50 to-teal-600',
-    bgColor: 'bg-emerald-50 dark:bg-emerald-900/20',
-    textColor: 'text-emerald-600 dark:text-emerald-400',
+    color: "from-emerald-50 to-teal-600",
+    bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
+    textColor: "text-emerald-600 dark:text-emerald-400",
   },
+
   {
-    title: 'Active Members',
-    value: '8,549',
-    change: '+8.2%',
-    trend: 'up',
-    icon: Users,
-    color: 'from-blue-500 to-indigo-600',
-    bgColor: 'bg-blue-50 dark:bg-blue-900/20',
-    textColor: 'text-blue-600 dark:text-blue-400',
-  },
-  {
-    title: 'Available Spaces',
-    value: '2,847',
-    change: '+15.3%',
-    trend: 'up',
+    title: "Available Spaces",
+    value: "2,847",
+    change: "+15.3%",
+    trend: "up",
     icon: ShoppingCart,
-    color: 'from-cyan-500 to-teal-600',
-    bgColor: 'bg-cyan-50 dark:bg-cyan-900/20',
-    textColor: 'text-cyan-600 dark:text-cyan-400',
+    color: "from-cyan-500 to-teal-600",
+    bgColor: "bg-cyan-50 dark:bg-cyan-900/20",
+    textColor: "text-cyan-600 dark:text-cyan-400",
   },
   {
-    title: 'Utilization Rate',
-    value: '45,892',
-    change: '-2.1%',
-    trend: 'down',
+    title: "Utilization Rate",
+    value: "45,892",
+    change: "-2.1%",
+    trend: "down",
     icon: Eye,
-    color: 'from-orange-500 to-red-600',
-    bgColor: 'bg-orange-50 dark:bg-orange-900/20',
-    textColor: 'text-orange-600 dark:text-orange-400',
+    color: "from-orange-500 to-red-600",
+    bgColor: "bg-orange-50 dark:bg-orange-900/20",
+    textColor: "text-orange-600 dark:text-orange-400",
   },
 ];
 const StatsGrid = () => {
@@ -66,13 +56,13 @@ const StatsGrid = () => {
                   {stats.value}
                 </p>
                 <div className="flex items-center space-x-2 dark:text-white">
-                  {stats.trend === 'up' ? (
+                  {stats.trend === "up" ? (
                     <ArrowUpRight className="w-4 h-4 text-emerald-500" />
                   ) : (
                     <ArrowDownRight className="w-4 h-4 text-red-500" />
                   )}
                   <span
-                    className={`text-sm font-semibold ${stats.trend === 'up' ? 'text-emerald-500' : 'text-red-500'}`}
+                    className={`text-sm font-semibold ${stats.trend === "up" ? "text-emerald-500" : "text-red-500"}`}
                   >
                     {stats.change}
                   </span>
@@ -90,7 +80,7 @@ const StatsGrid = () => {
             <div className="mt-4 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
               <div
                 className={`h-full bg-linear-to-r rounded-full transition-all duration-100 ${stats.color}`}
-                style={{ width: stats.trend === 'up' ? '75%' : '45%' }}
+                style={{ width: stats.trend === "up" ? "75%" : "45%" }}
               ></div>
             </div>
           </div>

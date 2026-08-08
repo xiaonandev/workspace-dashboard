@@ -1,4 +1,4 @@
-import { Bell, Plus, Search } from 'lucide-react';
+import { Bell, Plus, Search } from "lucide-react";
 
 export default function Header() {
   return (
@@ -27,10 +27,6 @@ export default function Header() {
         >
           <Bell className="w-4.5" aria-hidden="true" />
           <span className="absolute top-2.25 right-2.25 size-1.5 rounded-full border-2 border-[#edf2f4] bg-[#e55445]" />
-        </button>
-        <button className="flex h-10.5 cursor-pointer items-center gap-2 rounded-[11px] border-0 bg-[#44777d] px-4 text-[13px] font-bold text-white hover:bg-[#257a73] max-sm:w-10.5 max-sm:justify-center max-sm:px-0 max-sm:text-[0px]">
-          <Plus className="w-4.25" aria-hidden="true" />
-          New booking
         </button>
       </div>
     </header>

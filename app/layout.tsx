@@ -1,12 +1,17 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import "./globals.css";
 
-import Header from '@/components/layout/Header';
-import Sidebar from '@/components/layout/Sidebar';
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toast";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: 'Workspace Dashboard',
-  description: 'Manage workspace bookings, members, and performance.',
+  title: "Workspace Dashboard",
+  description: "Manage workspace bookings, members, and performance.",
 };
 
 export default function RootLayout({
@@ -15,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="min-h-full">
+    <html lang="en" className={cn("min-h-full", "font-sans", geist.variable)}>
       <body className="min-h-full bg-[#f5f8fa] font-sans text-[#2e3c49]">
         <div className="grid min-h-screen grid-cols-[248px_minmax(0,1fr)] max-[900px]:grid-cols-[76px_minmax(0,1fr)] max-sm:block max-sm:pb-17">
           <Sidebar />
@@ -23,6 +28,7 @@ export default function RootLayout({
             <Header />
             <main className="px-8 pt-7.5 pb-12 max-sm:px-4.5 max-sm:py-6">
               {children}
+              <Toaster />
             </main>
           </div>
         </div>
