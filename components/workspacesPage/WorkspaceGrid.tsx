@@ -10,6 +10,11 @@ export default function WorkspaceGrid({ workspaces }: WorkspaceGridProps) {
       {workspaces.map((workspace) => (
         <WorkspaceCard key={workspace.id} workspace={workspace} />
       ))}
+      {workspaces.length === 0 && (
+        <div>
+          <p>No workspaces found. Try adjusting your filters.</p>
+        </div>
+      )}
     </div>
   );
 }

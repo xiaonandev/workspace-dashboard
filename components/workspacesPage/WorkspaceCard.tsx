@@ -19,6 +19,7 @@ import Image from "next/image";
 import WorkspaceSheet from "./WorkspaceSheet";
 import type { Workspace } from "@/lib/generated/prisma/browser";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type WorkspaceCardProps = {
   workspace: Workspace;
@@ -26,23 +27,48 @@ type WorkspaceCardProps = {
 
 export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
   const router = useRouter();
-
   const { name, type, location, capacity, image, status } = workspace;
   const isActive = status === "active";
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const response = await fetch(`/api/workspaces/${workspace.id}`, {
-      method: "PATCH",
-      body: formData,
-    });
-    if (!response.ok) {
-      const result = await response.json();
-      console.error(result.error);
-      return;
-    }
+  const [isSaving, setIsSaving] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-    router.refresh();
+  const closeDialog = () => {
+    setIsOpen(false);
+    setError(null);
+  };
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+
+    if (!open) {
+      setError(null);
+    }
+  };
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    setError(null);
+    setIsSaving(true);
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    try {
+      const response = await fetch(`/api/workspaces/${workspace.id}`, {
+        method: "PATCH",
+        body: formData,
+      });
+      if (!response.ok) {
+        const result = await response.json();
+        setError(result.error);
+        return;
+      }
+
+      closeDialog();
+      router.refresh();
+    } catch (error) {
+      setError(`Unable to save workspace. Please try again.`);
+      console.error(error);
+    } finally {
+      setIsSaving(false);
+    }
   };
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
@@ -88,7 +114,7 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
           </div>
 
           <div className="flex items-center gap-2">
-            <Dialog>
+            <Dialog open={isOpen} onOpenChange={handleOpenChange}>
               <DialogTrigger
                 render={
                   <Button className="inline-flex cursor-pointer items-center rounded-lg border border-[#44777d]/30 bg-white px-3 py-4 text-sm font-medium text-[#44777d] transition hover:border-[#44777d] hover:bg-[#44777d]/5">
@@ -105,7 +131,7 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                   </DialogHeader>
                   <FieldGroup>
                     <Field>
-                      <Label htmlFor="name-1">Name</Label>
+                      <Label htmlFor={`name-${workspace.id}`}>Name</Label>
                       <Input
                         id="name-1"
                         name="name"
@@ -113,15 +139,22 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                       />
                     </Field>
                     <Field>
-                      <Label htmlFor="capacity-1">Capacity</Label>
-                      <Input
-                        id="capacity-1"
-                        name="capacity"
+                      <Label htmlFor={`capacity-${workspace.id}`}>
+                        Capacity
+                      </Label>
+                      <select
+                        className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm`}
                         defaultValue={workspace.capacity}
-                      />
+                        name="capacity"
+                        id="capacity-1"
+                      >
+                        <option value="1">1</option>
+                        <option value="4">4</option>
+                        <option value="8">8</option>
+                      </select>
                     </Field>
                     <Field>
-                      <Label htmlFor="status-1">Status</Label>
+                      <Label htmlFor={`status-${workspace.id}`}>Status</Label>
                       <select
                         className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm mb-5`}
                         defaultValue={workspace.status}
@@ -132,12 +165,17 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                         <option value="maintenance">Maintenance</option>
                       </select>
                     </Field>
+                    {error && (
+                      <div className="text-red-800 -mt-5 mb-2">{error} </div>
+                    )}
                   </FieldGroup>
                   <DialogFooter>
                     <DialogClose
                       render={<Button variant="outline">Cancel</Button>}
                     />
-                    <Button type="submit">Save changes</Button>
+                    <Button disabled={isSaving} type="submit">
+                      {isSaving ? "Svaing..." : "Save changes"}
+                    </Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
