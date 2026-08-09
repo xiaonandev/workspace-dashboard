@@ -235,19 +235,77 @@ const workspaces = [
 ] satisfies SeedWorkspace[];
 
 const members = [
-  { id: "seed-member-emma-wilson", name: "Emma Wilson", email: "emma@workspace.test" },
-  { id: "seed-member-daniel-kim", name: "Daniel Kim", email: "daniel@workspace.test" },
-  { id: "seed-member-sophie-martin", name: "Sophie Martin", email: "sophie@workspace.test" },
-  { id: "seed-member-james-lee", name: "James Lee", email: "james@workspace.test" },
+  {
+    id: "seed-member-emma-wilson",
+    name: "Emma Wilson",
+    email: "emma@workspace.test",
+  },
+  {
+    id: "seed-member-daniel-kim",
+    name: "Daniel Kim",
+    email: "daniel@workspace.test",
+  },
+  {
+    id: "seed-member-sophie-martin",
+    name: "Sophie Martin",
+    email: "sophie@workspace.test",
+  },
+  {
+    id: "seed-member-james-lee",
+    name: "James Lee",
+    email: "james@workspace.test",
+  },
 ] satisfies Prisma.MemberCreateManyInput[];
 
 const bookings = [
-  { id: "seed-booking-001", date: new Date("2026-08-08T00:00:00.000Z"), slot: "10:00 - 11:00", status: "Confirmed", workspaceId: "seed-atlas-meeting-room", memberId: "seed-member-emma-wilson" },
-  { id: "seed-booking-002", date: new Date("2026-08-08T00:00:00.000Z"), slot: "14:00 - 16:00", status: "Confirmed", workspaceId: "seed-focus-pod-a", memberId: "seed-member-daniel-kim" },
-  { id: "seed-booking-003", date: new Date("2026-08-09T00:00:00.000Z"), slot: "09:00 - 10:00", status: "Cancelled", workspaceId: "seed-window-desk-01", memberId: "seed-member-sophie-martin" },
-  { id: "seed-booking-004", date: new Date("2026-08-10T00:00:00.000Z"), slot: "11:00 - 12:00", status: "Confirmed", workspaceId: "seed-town-hall", memberId: "seed-member-james-lee" },
-  { id: "seed-booking-005", date: new Date("2026-08-11T00:00:00.000Z"), slot: "13:00 - 14:00", status: "Confirmed", workspaceId: "seed-nova-meeting-room", memberId: "seed-member-sophie-martin" },
-  { id: "seed-booking-006", date: new Date("2026-08-12T00:00:00.000Z"), slot: "15:00 - 16:00", status: "Cancelled", workspaceId: "seed-team-desk-cluster", memberId: "seed-member-emma-wilson" },
+  {
+    id: "seed-booking-001",
+    date: new Date("2026-08-08T00:00:00.000Z"),
+    slot: "10:00 - 11:00",
+    status: "Confirmed",
+    workspaceId: "seed-atlas-meeting-room",
+    memberId: "seed-member-emma-wilson",
+  },
+  {
+    id: "seed-booking-002",
+    date: new Date("2026-08-08T00:00:00.000Z"),
+    slot: "14:00 - 16:00",
+    status: "Confirmed",
+    workspaceId: "seed-focus-pod-a",
+    memberId: "seed-member-daniel-kim",
+  },
+  {
+    id: "seed-booking-003",
+    date: new Date("2026-08-09T00:00:00.000Z"),
+    slot: "09:00 - 10:00",
+    status: "Confirmed",
+    workspaceId: "seed-window-desk-01",
+    memberId: "seed-member-sophie-martin",
+  },
+  {
+    id: "seed-booking-004",
+    date: new Date("2026-08-10T00:00:00.000Z"),
+    slot: "11:00 - 12:00",
+    status: "Confirmed",
+    workspaceId: "seed-town-hall",
+    memberId: "seed-member-james-lee",
+  },
+  {
+    id: "seed-booking-005",
+    date: new Date("2026-08-11T00:00:00.000Z"),
+    slot: "13:00 - 14:00",
+    status: "Confirmed",
+    workspaceId: "seed-nova-meeting-room",
+    memberId: "seed-member-sophie-martin",
+  },
+  {
+    id: "seed-booking-006",
+    date: new Date("2026-08-12T00:00:00.000Z"),
+    slot: "15:00 - 16:00",
+    status: "Confirmed",
+    workspaceId: "seed-team-desk-cluster",
+    memberId: "seed-member-emma-wilson",
+  },
 ] satisfies Prisma.BookingCreateManyInput[];
 
 async function main() {

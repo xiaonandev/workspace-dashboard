@@ -12,7 +12,7 @@ export default function WorkspaceGrid({ workspaces }: WorkspaceGridProps) {
       ))}
       {workspaces.length === 0 && (
         <div>
-          <p>No workspaces found. Try adjusting your filters.</p>
+          <p>Nothing found. Try adjusting your filters.</p>
         </div>
       )}
     </div>

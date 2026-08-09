@@ -1,12 +1,21 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import type { Member, Workspace } from "@prisma/client";
 import { CalendarDays, Clock, MapPin, User } from "lucide-react";
+import BookingStatusButton from "./BookingStatusButton";
 
 type Booking = {
+  member: Member;
+  workspace: Workspace;
   id: string;
-  member: string;
-  email: string;
-  workspace: string;
-  date: string;
-  time: string;
+  date: Date;
+  slot: string;
   status: string;
 };
 
@@ -14,88 +23,86 @@ type Bookings = {
   bookings: Booking[];
 };
 const BookingsTable = ({ bookings }: Bookings) => {
+  if (bookings.length === 0) {
+    return <p>Nothing found. Try adjusting your filters.</p>;
+  }
+
   return (
-    <div>
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="border-b bg-gray-50 text-xs uppercase text-gray-500">
-              <tr>
-                <th className="px-5 py-3 font-medium">Member</th>
-                <th className="px-5 py-3 font-medium">Workspace</th>
-                <th className="px-5 py-3 font-medium">Date & time</th>
-                <th className="px-5 py-3 font-medium">Status</th>
-                <th className="px-5 py-3 font-medium"></th>
-              </tr>
-            </thead>
+    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+      <Table className="text-left">
+        <TableHeader className="bg-gray-50 text-xs uppercase text-gray-500">
+          <TableRow className="hover:bg-gray-50">
+            <TableHead className="px-5 py-3">Member</TableHead>
+            <TableHead className="px-5 py-3">Workspace</TableHead>
+            <TableHead className="px-5 py-3">Date & time</TableHead>
+            <TableHead className="px-5 py-3">Status</TableHead>
+            <TableHead className="px-5 py-3">
+              <span className="sr-only">Actions</span>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
 
-            <tbody className="divide-y divide-gray-100">
-              {bookings.map((booking) => (
-                <tr key={booking.id} className="transition hover:bg-gray-50">
-                  {" "}
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
-                        <User size={16} className="text-gray-500" />
-                      </div>
+        <TableBody>
+          {bookings.map((booking) => (
+            <TableRow key={booking.id}>
+              <TableCell className="px-5 py-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+                    <User size={16} className="text-gray-500" />
+                  </div>
 
-                      <div>
-                        <p className="font-medium text-gray-900">
-                          {booking.member}
-                        </p>
-                        <p className="text-xs text-gray-500">{booking.email}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <MapPin size={15} className="text-gray-400" />
-                      {booking.workspace}
-                    </div>
-                  </td>
-                  <td className="px-5 py-4">
-                    <div className="space-y-1 text-gray-600">
-                      <div className="flex items-center gap-2">
-                        <CalendarDays size={15} />
-                        {booking.date}
-                      </div>
+                  <div>
+                    <p className="font-medium text-gray-900">
+                      {booking.member.name}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {booking.member.email}
+                    </p>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell className="px-5 py-4">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <MapPin size={15} className="text-gray-400" />
+                  {booking.workspace.name}
+                </div>
+              </TableCell>
+              <TableCell className="px-5 py-4">
+                <div className="space-y-1 text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <CalendarDays size={15} />
+                    <div>{new Date(booking.date).toLocaleDateString()}</div>
+                  </div>
 
-                      <div className="flex items-center gap-2">
-                        <Clock size={15} />
-                        {booking.time}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-5 py-4">
-                    <span
-                      className={`rounded-full px-2.5 py-1 text-xs font-medium ${
-                        booking.status === "Confirmed"
-                          ? "bg-emerald-50 text-emerald-700"
-                          : "bg-gray-100 text-gray-500"
-                      }`}
-                    >
-                      {booking.status}
-                    </span>
-                  </td>
-                  <td className="px-5 py-4">
-                    <div className="flex justify-end gap-2">
-                      <button className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50">
-                        View
-                      </button>
-
-                      {booking.status !== "Cancelled" && (
-                        <button className="rounded-lg px-3 py-1.5 text-xs font-medium text-red-500 hover:bg-red-50">
-                          Cancel
-                        </button>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                  <div className="flex items-center gap-2">
+                    <Clock size={15} />
+                    {booking.slot}
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell className="px-5 py-4">
+                <span
+                  className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                    booking.status === "Confirmed"
+                      ? "bg-emerald-50 text-emerald-700"
+                      : "bg-gray-100 text-gray-500"
+                  }`}
+                >
+                  {booking.status}
+                </span>
+              </TableCell>
+              <TableCell className="px-5 py-4">
+                <div className="flex justify-end gap-2">
+                  <BookingStatusButton
+                    id={booking.id}
+                    status={booking.status}
+                  />
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 };
