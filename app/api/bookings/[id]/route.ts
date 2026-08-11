@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-
+import { NextResponse } from "next/server";
 type Context = {
   params: Promise<{
     id: string;
@@ -11,8 +11,8 @@ export async function PATCH(request: Request, context: Context) {
     const body = await request.json();
     const status = body.status;
     if (status !== "Cancelled" && status !== "Confirmed") {
-      return Response.json(
-        { error: "Please enter a vaild value." },
+      return NextResponse.json(
+        { error: "Please enter a valid value." },
         { status: 400 },
       );
     }
@@ -24,11 +24,11 @@ export async function PATCH(request: Request, context: Context) {
         status,
       },
     });
-    return Response.json(updatedBooking);
+    return NextResponse.json(updatedBooking);
   } catch (error) {
     console.error(error);
-    return Response.json(
-      { error: "Unable to unpate booking." },
+    return NextResponse.json(
+      { error: "Unable to update booking." },
       { status: 500 },
     );
   }

@@ -174,7 +174,7 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                       render={<Button variant="outline">Cancel</Button>}
                     />
                     <Button disabled={isSaving} type="submit">
-                      {isSaving ? "Svaing..." : "Save changes"}
+                      {isSaving ? "Saving..." : "Save changes"}
                     </Button>
                   </DialogFooter>
                 </form>

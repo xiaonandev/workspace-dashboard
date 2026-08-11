@@ -1,3 +1,4 @@
+import PageHeader from "@/components/layout/PageHeader";
 import WorkspaceFilters from "@/components/workspacesPage/WorkspaceFilters";
 import WorkspaceGrid from "@/components/workspacesPage/WorkspaceGrid";
 
@@ -35,7 +36,11 @@ export default async function page({ searchParams }: Props) {
   });
 
   return (
-    <div>
+    <div className="space-y-4">
+      <PageHeader
+        title="Workspaces"
+        description=" View and manage workspaces."
+      />
       <WorkspaceFilters />
       <WorkspaceGrid workspaces={workspaces} />
     </div>

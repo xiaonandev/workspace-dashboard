@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
 type Context = {
   params: Promise<{ id: string }>;
@@ -12,7 +13,7 @@ export async function PATCH(request: Request, context: Context) {
     const capacityValue = formData.get("capacity");
     const status = formData.get("status");
     if (typeof name !== "string" || !name.trim()) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Workspace name is required" },
         { status: 400 },
       );
@@ -20,7 +21,7 @@ export async function PATCH(request: Request, context: Context) {
     const capacity = Number(capacityValue);
 
     if (![1, 4, 8].includes(capacity)) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Capacity must be 1, 4, or 8" },
         { status: 400 },
       );
@@ -29,7 +30,7 @@ export async function PATCH(request: Request, context: Context) {
       typeof status !== "string" ||
       !["active", "maintenance"].includes(status)
     ) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Invalid workspace status" },
         { status: 400 },
       );
@@ -44,10 +45,10 @@ export async function PATCH(request: Request, context: Context) {
         status,
       },
     });
-    return Response.json(updatedWorkspace);
+    return NextResponse.json(updatedWorkspace);
   } catch (error) {
     console.error(error);
-    return Response.json(
+    return NextResponse.json(
       { error: "Unable to update workspace" },
       { status: 500 },
     );

@@ -1,7 +1,7 @@
 "use client";
 import { Search } from "lucide-react";
-import InteractiveButton from "../ui/InteractiveButton";
-import Filters from "../ui/Filter";
+import InteractiveButton from "../features/common/InteractiveButton";
+import Filters from "../features/common/Filter";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useRef } from "react";
 

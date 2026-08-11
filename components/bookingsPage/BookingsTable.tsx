@@ -19,9 +19,10 @@ type Booking = {
   status: string;
 };
 
-type Bookings = {
+export type Bookings = {
   bookings: Booking[];
 };
+
 const BookingsTable = ({ bookings }: Bookings) => {
   if (bookings.length === 0) {
     return <p>Nothing found. Try adjusting your filters.</p>;

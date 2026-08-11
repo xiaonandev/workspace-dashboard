@@ -1,8 +1,8 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useRef } from "react";
-import Filters from "../ui/Filter";
-import InteractiveButton from "../ui/InteractiveButton";
+import Filters from "../features/common/Filter";
+import InteractiveButton from "../features/common/InteractiveButton";
 
 const defaultValues: Record<string, string> = {
   type: "All types",
