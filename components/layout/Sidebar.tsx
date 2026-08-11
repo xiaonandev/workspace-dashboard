@@ -1,5 +1,10 @@
 "use client";
-import { CalendarDays, LayoutDashboard, MapPin, Zap } from "lucide-react";
+import {
+  CalendarDays,
+  LayoutDashboard,
+  MapPin,
+  CheckCheck,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,7 +20,7 @@ export default function Sidebar() {
     <aside className="sticky top-0 z-20 flex h-screen flex-col bg-[#0a262c] px-4 pt-6 pb-4.5 text-[#d9e7e9] max-[900px]:px-2.5 max-sm:fixed max-sm:top-auto max-sm:bottom-0 max-sm:h-17 max-sm:w-full max-sm:flex-row max-sm:px-3 max-sm:py-2">
       <div className="flex items-center gap-3 px-2.5 pb-7 max-[900px]:justify-center max-[900px]:px-0 max-sm:hidden">
         <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#44777d] text-white">
-          <Zap className="w-5.25" aria-hidden="true" />
+          <CheckCheck className="w-5.25" aria-hidden="true" />
         </span>
         <span className="flex min-w-0 flex-col max-[900px]:hidden">
           <strong className="text-lg tracking-[-0.02em] text-white">
@@ -64,7 +69,7 @@ export default function Sidebar() {
           </span>
           <span className="flex min-w-0 flex-col max-[900px]:hidden">
             <strong className="truncate whitespace-nowrap text-[13px] text-white">
-              Alex Morgan
+              Demo User
             </strong>
             <small className="mt-0.5 text-xs text-[#8eaaae]">
               Administrator

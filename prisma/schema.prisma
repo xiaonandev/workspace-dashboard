@@ -43,4 +43,6 @@ model Booking {
 
   memberId String
   member   Member @relation(fields: [memberId], references: [id])
+
+  createdAt DateTime @default(now())
 }

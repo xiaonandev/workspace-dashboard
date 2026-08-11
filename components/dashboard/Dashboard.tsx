@@ -1,4 +1,4 @@
-import StatsGrid from './StatsGrid';
+import Stats from './Stats';
 import ChartSection from './ChartSection';
 
 const Dashboard = () => {
@@ -17,7 +17,7 @@ const Dashboard = () => {
           Track occupancy, bookings, and member activity across your spaces.
         </p>
       </div>
-      <StatsGrid />
+      <Stats />
       <ChartSection />
     </div>
   );
