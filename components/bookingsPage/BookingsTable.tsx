@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { Member, Workspace } from "@prisma/client";
+import type { Member, Workspace } from "@/lib/generated/prisma/browser";
 import { CalendarDays, Clock, MapPin, User } from "lucide-react";
 import BookingStatusButton from "./BookingStatusButton";
 

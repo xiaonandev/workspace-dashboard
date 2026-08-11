@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
-import { Workspace, Member } from "@/lib/generated/prisma/client";
+import type { Workspace, Member } from "@/lib/generated/prisma/browser";
 import { useRouter } from "next/navigation";
 
 type createBookingProps = {

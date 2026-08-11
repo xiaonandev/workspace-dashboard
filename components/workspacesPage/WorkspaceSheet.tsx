@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Calendar, Clock, User, Users } from "lucide-react";
-import { Workspace } from "@/lib/generated/prisma/browser";
+import type { Workspace } from "@/lib/generated/prisma/browser";
 
 export type WorkspaceSheetProps = {
   workspace: Workspace;
