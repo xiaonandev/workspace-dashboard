@@ -56,6 +56,7 @@ const BookingStatusButton = ({ id, status }: props) => {
         </p>
       )}
       <Button
+        type="button"
         onClick={handleStatusChange}
         variant="outline"
         disabled={isSaving || isPending}

@@ -69,7 +69,7 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
       closeDialog();
       router.refresh();
     } catch (error) {
-      setError("Uable to create booking. Please try later.");
+      setError("Unable to create booking. Please try later.");
       console.log(error);
     } finally {
       setIsSaving(false);
@@ -97,11 +97,12 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
                 <Label htmlFor="workspace">Workspace</Label>
                 <select
                   className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm`}
+                  defaultValue=""
                   name="workspaceId"
                   id="workspace"
                   required
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Select one workspace
                   </option>
                   {workspaces
@@ -141,9 +142,10 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
                   className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm`}
                   name="memberId"
                   id="member"
+                  defaultValue=""
                   required
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Select one member
                   </option>
                   {members.map((member) => (
@@ -161,6 +163,7 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
                   name="date"
                   id="date"
                   min={today}
+                  defaultValue={today}
                   required
                 />
               </Field>
@@ -170,9 +173,10 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
                   className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 mb-3 text-sm`}
                   name="slot"
                   id="slot"
+                  defaultValue=""
                   required
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Select one time slot
                   </option>
                   {BOOKING_SLOTS.map((slot) => (
@@ -185,9 +189,15 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
               {error && <div className="text-red-800 -mt-5 mb-2">{error} </div>}
             </FieldGroup>
             <DialogFooter>
-              <DialogClose render={<Button variant="outline">Cancel</Button>} />
+              <DialogClose
+                render={
+                  <Button type="button" variant="outline">
+                    Cancel
+                  </Button>
+                }
+              />
               <Button disabled={isSaving} type="submit">
-                {isSaving ? "Saving..." : "create Booking"}
+                {isSaving ? "Saving..." : "Create Booking"}
               </Button>
             </DialogFooter>
           </form>
