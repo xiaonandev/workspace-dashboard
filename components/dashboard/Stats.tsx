@@ -1,8 +1,7 @@
 import { prisma } from "@/lib/prisma";
+import { SLOTS_PER_DAY } from "@/lib/constants";
 import { CalendarCheck, CalendarDays, MapPinCheck } from "lucide-react";
 import StatsGrid, { type StatItem } from "./StatsGrid";
-
-const SLOTS_PER_DAY = 7;
 
 function getDayRange(daysFromToday: number) {
   const start = new Date();

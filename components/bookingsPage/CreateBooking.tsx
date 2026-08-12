@@ -14,22 +14,13 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import type { Workspace, Member } from "@/lib/generated/prisma/browser";
+import { BOOKING_SLOTS } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 
 type createBookingProps = {
   workspaces: Workspace[];
   members: Member[];
 };
-
-const slots = [
-  "09:00 - 10:00",
-  "10:00 - 11:00",
-  "11:00 - 12:00",
-  "13:00 - 14:00",
-  "14:00 - 15:00",
-  "15:00 - 16:00",
-  "16:00 - 17:00",
-] as const;
 
 const CreateBooking = ({ workspaces, members }: createBookingProps) => {
   const today = new Date().toISOString().split("T")[0];
@@ -184,7 +175,7 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
                   <option value="" disabled selected>
                     Select one time slot
                   </option>
-                  {slots.map((slot) => (
+                  {BOOKING_SLOTS.map((slot) => (
                     <option key={slot} value={slot}>
                       {slot}
                     </option>

@@ -15,6 +15,8 @@ type Props = {
 export default async function page({ searchParams }: Props) {
   const params = await searchParams;
   const minimumCapacity = Number(params.capacity);
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
 
   const workspaces = await prisma.workspace.findMany({
     where: {
@@ -33,6 +35,19 @@ export default async function page({ searchParams }: Props) {
       status: params.status || undefined,
     },
     orderBy: { name: "asc" },
+    include: {
+      bookings: {
+        where: {
+          date: { gte: todayStart },
+          status: "Confirmed",
+        },
+        include: {
+          member: true,
+        },
+        orderBy: [{ date: "asc" }, { slot: "asc" }],
+        take: 5,
+      },
+    },
   });
 
   return (

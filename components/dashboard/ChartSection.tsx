@@ -1,13 +1,7 @@
 import { prisma } from "@/lib/prisma";
+import { WORKSPACE_TYPE_COLORS } from "@/lib/constants";
 import BookingsByTypeChart from "./BookingsByTypeChart";
 import BookingsCreatedChart from "./BookingsCreatedChart";
-
-const TYPE_COLORS: Record<string, string> = {
-  "Meeting Room": "#3b82f6",
-  Desk: "#06b6d4",
-  "Focus Room": "#10b981",
-  "Event Space": "#f59e0b",
-};
 
 function getDateKey(date: Date) {
   return date.toISOString().slice(0, 10);
@@ -58,7 +52,7 @@ export default async function ChartSection() {
     typeCounts.set(type, (typeCounts.get(type) ?? 0) + 1);
   }
 
-  const typeData = Object.entries(TYPE_COLORS).map(([name, color]) => ({
+  const typeData = Object.entries(WORKSPACE_TYPE_COLORS).map(([name, color]) => ({
     name,
     value: typeCounts.get(name) ?? 0,
     color,

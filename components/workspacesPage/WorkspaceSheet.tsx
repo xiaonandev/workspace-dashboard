@@ -9,35 +9,15 @@ import {
 import Image from "next/image";
 import { Calendar, Clock, User, Users } from "lucide-react";
 import type { Workspace } from "@/lib/generated/prisma/browser";
+import type { UpcomingBooking } from "./WorkspaceGrid";
 
 export type WorkspaceSheetProps = {
   workspace: Workspace;
+  bookings: UpcomingBooking[];
 };
 
-function WorkspaceSheet({ workspace }: WorkspaceSheetProps) {
+function WorkspaceSheet({ workspace, bookings }: WorkspaceSheetProps) {
   const { name, image, capacity, location } = workspace;
-
-  const bookings = [
-    {
-      id: 1,
-      member: "Emma Wilson",
-      date: "Aug 6",
-      time: "10:00 - 11:00",
-    },
-    {
-      id: 2,
-      member: "Daniel Kim",
-      date: "Aug 6",
-      time: "14:00 - 16:00",
-    },
-    {
-      id: 3,
-      member: "Sophie Martin",
-      date: "Aug 7",
-      time: "09:00 - 10:00",
-    },
-  ];
-
   return (
     <Sheet>
       <SheetTrigger className="cursor-pointer rounded-lg bg-[#44777d] px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-800">
@@ -85,22 +65,27 @@ function WorkspaceSheet({ workspace }: WorkspaceSheetProps) {
                 >
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-900">
                     <User size={15} />
-                    {booking.member}
+                    {booking.member.name}
                   </div>
 
                   <div className="mt-2 flex gap-4 text-sm text-gray-500">
                     <div className="flex items-center gap-1">
                       <Calendar size={14} />
-                      {booking.date}
+                      {booking.date.toLocaleDateString()}
                     </div>
 
                     <div className="flex items-center gap-1">
                       <Clock size={14} />
-                      {booking.time}
+                      {booking.slot}
                     </div>
                   </div>
                 </div>
               ))}
+              {bookings.length === 0 && (
+                <div className="rounded-lg border border-dashed border-gray-200 px-4 py-6 text-center text-sm text-gray-500">
+                  No upcoming bookings.
+                </div>
+              )}
             </div>
           </div>
         </div>

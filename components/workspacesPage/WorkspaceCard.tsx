@@ -17,12 +17,13 @@ import { Label } from "@/components/ui/label";
 import { MapPin, Monitor, Users, Video, Wifi } from "lucide-react";
 import Image from "next/image";
 import WorkspaceSheet from "./WorkspaceSheet";
-import type { Workspace } from "@/lib/generated/prisma/browser";
+import type { WorkspaceWithUpcomingBookings } from "./WorkspaceGrid";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { WORKSPACE_TYPE_COLORS } from "@/lib/constants";
 
 type WorkspaceCardProps = {
-  workspace: Workspace;
+  workspace: WorkspaceWithUpcomingBookings;
 };
 
 export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
@@ -32,7 +33,7 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const backgroundColor = WORKSPACE_TYPE_COLORS[type] || "#6b7280";
   const closeDialog = () => {
     setIsOpen(false);
     setError(null);
@@ -75,7 +76,10 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
       <div className="relative h-48">
         <Image src={image} alt={name} fill className="object-cover" />
 
-        <span className="absolute left-3 top-3 rounded-full bg-violet-500 px-3 py-1 text-xs font-medium text-white">
+        <span
+          className="absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-medium text-white"
+          style={{ backgroundColor }}
+        >
           {type}
         </span>
       </div>
@@ -193,7 +197,10 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                 </form>
               </DialogContent>
             </Dialog>
-            <WorkspaceSheet workspace={workspace} />
+            <WorkspaceSheet
+              workspace={workspace}
+              bookings={workspace.bookings}
+            />
           </div>
         </div>
       </div>

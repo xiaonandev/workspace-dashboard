@@ -1,15 +1,7 @@
 import { prisma } from "@/lib/prisma";
+import { BOOKING_SLOTS } from "@/lib/constants";
 import { NextResponse } from "next/server";
 import z from "zod";
-const slots = [
-  "09:00 - 10:00",
-  "10:00 - 11:00",
-  "11:00 - 12:00",
-  "13:00 - 14:00",
-  "14:00 - 15:00",
-  "15:00 - 16:00",
-  "16:00 - 17:00",
-] as const;
 
 const isTodayOrLater = (date: Date) => {
   const todayStart = new Date();
@@ -22,7 +14,7 @@ const CreateBookingSchema = z.object({
   date: z.coerce.date().refine(isTodayOrLater, {
     message: "Please select today or a later date.",
   }),
-  slot: z.enum(slots),
+  slot: z.enum(BOOKING_SLOTS),
   workspaceId: z.string().min(1, "Please select a workspace."),
   memberId: z.string().min(1, "Please select a member."),
 });

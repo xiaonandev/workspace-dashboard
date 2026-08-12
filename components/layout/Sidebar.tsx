@@ -65,7 +65,7 @@ export default function Sidebar() {
       <div className="mt-auto max-sm:hidden">
         <div className="mt-4 flex items-center gap-2.5 border-t border-white/10 px-2.5 pt-4 max-[900px]:justify-center max-[900px]:px-0">
           <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#d7eeee] text-xs font-extrabold text-[#0b5962]">
-            AM
+            DM
           </span>
           <span className="flex min-w-0 flex-col max-[900px]:hidden">
             <strong className="truncate whitespace-nowrap text-[13px] text-white">
