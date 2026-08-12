@@ -45,9 +45,9 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
     }
   };
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setError(null);
     setIsSaving(true);
-    e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     try {
@@ -133,9 +133,11 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                     <Field>
                       <Label htmlFor={`name-${workspace.id}`}>Name</Label>
                       <Input
-                        id="name-1"
+                        id={`name-${workspace.id}`}
                         name="name"
                         defaultValue={workspace.name}
+                        maxLength={80}
+                        required
                       />
                     </Field>
                     <Field>
@@ -146,7 +148,8 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                         className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm`}
                         defaultValue={workspace.capacity}
                         name="capacity"
-                        id="capacity-1"
+                        id={`capacity-${workspace.id}`}
+                        required
                       >
                         <option value="1">1</option>
                         <option value="4">4</option>
@@ -159,19 +162,29 @@ export default function WorkspaceCard({ workspace }: WorkspaceCardProps) {
                         className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm mb-5`}
                         defaultValue={workspace.status}
                         name="status"
-                        id="status-1"
+                        id={`status-${workspace.id}`}
+                        required
                       >
                         <option value="active">Active</option>
                         <option value="maintenance">Maintenance</option>
                       </select>
                     </Field>
                     {error && (
-                      <div className="text-red-800 -mt-5 mb-2">{error} </div>
+                      <p
+                        role="alert"
+                        className="-mt-5 mb-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700"
+                      >
+                        {error}
+                      </p>
                     )}
                   </FieldGroup>
                   <DialogFooter>
                     <DialogClose
-                      render={<Button variant="outline">Cancel</Button>}
+                      render={
+                        <Button type="button" variant="outline">
+                          Cancel
+                        </Button>
+                      }
                     />
                     <Button disabled={isSaving} type="submit">
                       {isSaving ? "Saving..." : "Save changes"}

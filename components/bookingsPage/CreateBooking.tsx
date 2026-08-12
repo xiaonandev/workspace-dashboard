@@ -22,14 +22,14 @@ type createBookingProps = {
 };
 
 const slots = [
-  { key: "9-10", value: "09:00 - 10:00" },
-  { key: "10-11", value: "10:00 - 11:00" },
-  { key: "11-12", value: "11:00 - 12:00" },
-  { key: "13-14", value: "13:00 - 14:00" },
-  { key: "14-15", value: "14:00 - 15:00" },
-  { key: "15-16", value: "15:00 - 16:00" },
-  { key: "16-17", value: "16:00 - 17:00" },
-];
+  "09:00 - 10:00",
+  "10:00 - 11:00",
+  "11:00 - 12:00",
+  "13:00 - 14:00",
+  "14:00 - 15:00",
+  "15:00 - 16:00",
+  "16:00 - 17:00",
+] as const;
 
 const CreateBooking = ({ workspaces, members }: createBookingProps) => {
   const today = new Date().toISOString().split("T")[0];
@@ -185,8 +185,8 @@ const CreateBooking = ({ workspaces, members }: createBookingProps) => {
                     Select one time slot
                   </option>
                   {slots.map((slot) => (
-                    <option key={slot.key} value={slot.value}>
-                      {slot.value}
+                    <option key={slot} value={slot}>
+                      {slot}
                     </option>
                   ))}
                 </select>
