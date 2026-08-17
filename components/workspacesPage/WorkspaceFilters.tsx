@@ -94,21 +94,25 @@ const WorkspaceFilters = () => {
         className="min-w-50 flex-1 rounded-lg border border-gray-200 px-4 py-2 text-sm outline-none"
       />
       <Filters
+        label="type"
         options={typeOptions}
         value={params.get("type") || "All types"}
         onChange={(val) => handleOnChange("type", val)}
       />
       <Filters
+        label="location"
         options={locationOptions}
         value={params.get("location") || "All locations"}
         onChange={(val) => handleOnChange("location", val)}
       />
       <Filters
+        label="capacity"
         options={capacityOptions}
         value={params.get("capacity") || "All capacity"}
         onChange={(val) => handleOnChange("capacity", val)}
       />
       <Filters
+        label="status"
         options={statusOptions}
         value={params.get("status") || "All status"}
         onChange={(val) => handleOnChange("status", val)}
