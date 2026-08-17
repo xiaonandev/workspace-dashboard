@@ -68,6 +68,7 @@ export default function BookingsFilters() {
         />
       </div>
       <Filters
+        label="Filter bookings by status"
         options={statusOptions}
         value={params.get("status") || "All status"}
         onChange={(val) => handleOnChange("status", val)}

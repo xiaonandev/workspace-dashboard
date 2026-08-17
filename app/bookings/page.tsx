@@ -11,7 +11,7 @@ type Props = {
 };
 const page = async ({ searchParams }: Props) => {
   const params = await searchParams;
-  const bookings = await prisma.booking.findMany({
+  const bookingRecords = await prisma.booking.findMany({
     where: {
       OR: params.search
         ? [
@@ -33,8 +33,6 @@ const page = async ({ searchParams }: Props) => {
             },
           ]
         : undefined,
-
-      status: params.status || undefined,
     },
     include: {
       workspace: true,
@@ -44,6 +42,31 @@ const page = async ({ searchParams }: Props) => {
       date: "asc",
     },
   });
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+
+  const bookings = bookingRecords
+    .map((booking) => {
+      const bookingDate = new Date(booking.date);
+      bookingDate.setUTCHours(0, 0, 0, 0);
+      const isExpired = bookingDate < today;
+
+      return {
+        ...booking,
+        isExpired,
+        status: isExpired ? "Cancelled" : booking.status,
+      };
+    })
+    .filter(
+      (booking) => !params.status || booking.status === params.status,
+    )
+    .sort((a, b) => {
+      if (a.isExpired !== b.isExpired) {
+        return a.isExpired ? 1 : -1;
+      }
+
+      return a.date.getTime() - b.date.getTime();
+    });
   const members = await prisma.member.findMany();
   const workspaces = await prisma.workspace.findMany();
 

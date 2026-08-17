@@ -17,6 +17,7 @@ type Booking = {
   date: Date;
   slot: string;
   status: string;
+  isExpired: boolean;
 };
 
 export type Bookings = {
@@ -97,6 +98,7 @@ const BookingsTable = ({ bookings }: Bookings) => {
                   <BookingStatusButton
                     id={booking.id}
                     status={booking.status}
+                    isExpired={booking.isExpired}
                   />
                 </div>
               </TableCell>

@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 type props = {
   id: string;
   status: string;
+  isExpired: boolean;
 };
-const BookingStatusButton = ({ id, status }: props) => {
+const BookingStatusButton = ({ id, status, isExpired }: props) => {
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const router = useRouter();
@@ -57,13 +58,13 @@ const BookingStatusButton = ({ id, status }: props) => {
       )}
       <Button
         type="button"
-        onClick={handleStatusChange}
+        onClick={isExpired ? undefined : handleStatusChange}
         variant="outline"
-        disabled={isSaving || isPending}
+        disabled={isExpired || isSaving || isPending}
         className={`rounded-lg px-3 py-1.5 text-xs font-medium ${status === "Cancelled" ? "text-green-700" : "text-red-500"} `}
       >
         {(isSaving || isPending) && <Spinner data-icon="inline-start" />}
-        {status === "Cancelled" ? "Restore" : "Cancel"}
+        {isExpired ? "Expired" : status === "Cancelled" ? "Restore" : "Cancel"}
       </Button>
     </div>
   );
