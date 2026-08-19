@@ -1,20 +1,30 @@
 # Workspace Booking Dashboard
 
-A full-stack dashboard for managing shared workspaces and bookings.
+A full-stack workspace reservation dashboard with conflict-safe booking flows,
+server-rendered data and persistent PostgreSQL storage.
 
-[Live Demo](https://workspace-dashboard-rho.vercel.app/bookings)
+[Live Demo](https://workspace-dashboard-rho.vercel.app)
+
+[Case Study](https://xiaonan-portfolio.vercel.app/en/case-studies/workspace-dashboard)
 
 ## Features
 
 - URL-based workspace and booking filters
-- Booking creation, cancellation and restoration
+- Booking creation, cancellation and conflict-safe restoration
 - Conflict checks across workspace, date and time slot
+- Past reservations are presented as cancelled and cannot be restored
 - Runtime API validation with Zod
-- Database-driven metrics and charts
+- Durable, database-driven dashboard metrics and charts
+
+## Engineering Highlights
+
+- Revalidates workspace availability and slot conflicts before restoring a booking
+- Keeps actions pending through both the API request and Server Component refresh
+- Separates client-safe constants from Prisma-dependent server modules
 
 ## Tech Stack
 
-Next.js · TypeScript · PostgreSQL · Prisma · Zod · Tailwind CSS · shadcn/ui · Recharts
+Next.js · TypeScript · PostgreSQL · Prisma · Zod · Tailwind CSS · shadcn/ui · Recharts · Vitest
 
 The demo uses seeded data and is intended for portfolio presentation.
 
